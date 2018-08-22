@@ -60,8 +60,7 @@ public class indexClass extends JFrame {
 		
 		//top of the frame
 		title=new JLabel("SCHOOL MANAGEMENT");
-		title.setForeground(Color.WHITE);
-		title.setFont(new Font("arial",Font.BOLD+Font.ITALIC,16));
+		cf.setColor(title, 3, 16,true);
 		ImageIcon imageIcon1=new ImageIcon("images/logo.png");
 		Image newing1=image.getScaledInstance(50, 50,Image.SCALE_SMOOTH);
 		imageIcon=new ImageIcon(newing1);
@@ -71,13 +70,13 @@ public class indexClass extends JFrame {
 		titlePanel.setBackground(cr);
 		c.fill=GridBagConstraints.HORIZONTAL;
 		cf.addBag(titlePanel,titleImage,c,30,30,0,0,0,0,GridBagConstraints.LINE_START);
-		cf.addBag(titlePanel,title,c,420,20,1,0,0,0,GridBagConstraints.LINE_START);
+		cf.addBag(titlePanel,title,c,415,20,1,0,0,0,GridBagConstraints.LINE_START);
 		topPanel=new JPanel();
 		topPanel.setLayout(new GridBagLayout());
 		topPanel.setBackground(cr);
-		cf.addBag(topPanel,close,c,10,10,1,0,0.1,0,GridBagConstraints.PAGE_START);
-		cf.addBag(topPanel,titlePanel,c,0,0,0,0,0,0,GridBagConstraints.LINE_END);
 		
+		cf.addBag(topPanel,titlePanel,c,0,0,0,0,0,0,GridBagConstraints.LINE_START);
+		cf.addBag(topPanel,close,c,10,10,1,0,0,0,GridBagConstraints.LINE_END);
 		
 		
 		
@@ -110,7 +109,7 @@ public class indexClass extends JFrame {
 		centerDownPanel.add(feesManager);
 		centerDownPanel.add(teachar);
 		
-		centerPanel=new MyPanel();
+		centerPanel=new JPanel();
 		centerPanel.setOpaque(false);
 		centerPanel.setLayout(new GridBagLayout());
 		
@@ -126,10 +125,42 @@ public class indexClass extends JFrame {
 		//actionListener
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				System.exit(0);
 			}
 		});
+		principal.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new Login("PRINCIPAL");
+			}
+		});
+		visPrincipal.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new Login("VIS-PRINCIPAL");
+			}
+		});
+		feesManager.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new Login("FEES MANAGER");
+			}
+		});
+		teachar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new Login("TEACHER");
+			}
+		});
+
 	}
 	
 	

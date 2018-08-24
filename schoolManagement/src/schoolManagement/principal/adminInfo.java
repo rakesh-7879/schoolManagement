@@ -15,7 +15,7 @@ public class adminInfo extends JPanel{
 	GridBagConstraints c=new GridBagConstraints();
 	CommanFunctions cf=new CommanFunctions();
 	public adminInfo() {
-		setVisible(false);
+		setVisible(true);
 		setSize(300,600);
 		setOpaque(false);
 		setLayout(new GridBagLayout());

@@ -28,6 +28,8 @@ public class MainFrame extends JFrame{
 	PMenu pMenu;
 	VMenu vMenu;
 	adminInfo admin;
+	EditMe editMe;
+	ChangePassword cp1;
 	public MainFrame(String name) {
 		d=getToolkit().getScreenSize();
 		setUndecorated(true);
@@ -82,6 +84,9 @@ public class MainFrame extends JFrame{
 		vMenu=new VMenu();
 		
 		
+		//center center
+		editMe=new EditMe();
+		cp1=new ChangePassword();
 		
 		
 		
@@ -93,15 +98,124 @@ public class MainFrame extends JFrame{
 		if(name.equals("PRINCIPAL")) {
 			centerPanel.add(pMenu,BorderLayout.NORTH);
 			pMenu.setVisible(true);
+			
+			//adminInfo top menu
 			pMenu.adminButton.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					admin.setVisible(true);
+					editMe.setVisible(true);
+					cp1.setVisible(false);
+				}
+			});
+			
+			//editme right menu
+			admin.editMe.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					editMe.setVisible(true);
+					editMe.principal.setEditable(true);
+					editMe.age.setEditable(true);
+					editMe.joining.setEditable(true);
+					editMe.eMail.setEditable(true);
+					editMe.mobile.setEditable(true);
+					editMe.home.setEditable(true);
+					editMe.address.setEditable(true);
+					editMe.pSave.setVisible(true);
+					
+					editMe.vprincipal.setEditable(false);
+					editMe.vage.setEditable(false);
+					editMe.vjoining.setEditable(false);
+					editMe.veMail.setEditable(false);
+					editMe.vmobile.setEditable(false);
+					editMe.vhome.setEditable(false);
+					editMe.vaddress.setEditable(false);
+					editMe.pSave2.setVisible(false);
+
+					
+				}
+			});
+			
+			//edit Visprincipal right menu
+			admin.editVis.addActionListener(new ActionListener() {
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					editMe.setVisible(true);
+					editMe.vprincipal.setEditable(true);
+					editMe.vage.setEditable(true);
+					editMe.vjoining.setEditable(true);
+					editMe.veMail.setEditable(true);
+					editMe.vmobile.setEditable(true);
+					editMe.vhome.setEditable(true);
+					editMe.vaddress.setEditable(true);
+					editMe.pSave2.setVisible(true);
+					
+					
+					editMe.principal.setEditable(false);
+					editMe.age.setEditable(false);
+					editMe.joining.setEditable(false);
+					editMe.eMail.setEditable(false);
+					editMe.mobile.setEditable(false);
+					editMe.home.setEditable(false);
+					editMe.address.setEditable(false);
+					editMe.pSave.setVisible(false);
+
+					
 				}
 			});
 			
 			
+			//cancel of editme right menu
+			editMe.cancel1.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					editMe.principal.setEditable(false);
+					editMe.age.setEditable(false);
+					editMe.joining.setEditable(false);
+					editMe.eMail.setEditable(false);
+					editMe.mobile.setEditable(false);
+					editMe.home.setEditable(false);
+					editMe.address.setEditable(false);
+					editMe.pSave.setVisible(false);
+
+					
+				}
+			});
+			
+
+			//cancel of editVis right menu
+			editMe.cancel2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					editMe.vprincipal.setEditable(false);
+					editMe.vage.setEditable(false);
+					editMe.vjoining.setEditable(false);
+					editMe.veMail.setEditable(false);
+					editMe.vmobile.setEditable(false);
+					editMe.vhome.setEditable(false);
+					editMe.vaddress.setEditable(false);
+					editMe.pSave2.setVisible(false);
+
+					
+				}
+			});
+
+			
+			
+			admin.changePassword.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					editMe.setVisible(false);
+					cp1.setVisible(true);
+					
+				}
+			});
 			
 			
 			
@@ -121,6 +235,19 @@ public class MainFrame extends JFrame{
 			
 		}
 		
+		
+		
+		
+		//center center panel
+		centerCenterPanel=new JPanel();
+		centerCenterPanel.setOpaque(false);
+		centerCenterPanel.add(editMe);
+		centerCenterPanel.add(cp1);
+
+		
+		
+		
+		
 		//center right panel
 		
 		
@@ -132,10 +259,6 @@ public class MainFrame extends JFrame{
 		
 		
 		
-		
-		//center center panel
-		centerCenterPanel=new JPanel();
-		centerCenterPanel.setOpaque(false);
 		
 		
 				

@@ -19,9 +19,9 @@ public class CommanFunctions {
 		c.ipady=ipy; 
 		c.gridx=gx;
 		c.gridy=gy;
-		c.anchor=anr;
 		c.weightx=wx;
 		c.weighty=wy;
+		c.anchor=anr;
 		con.add(com,c);
 	}
 	public void setColor(Component com,int font, int size,boolean color) {

@@ -124,9 +124,10 @@ public class Login extends JFrame{
 		loginButton=new JButton("Login");
 		forgetButton=new JButton("Forget ??");
 		loginButton.setBackground(new Color(105,105,105));
-		forgetButton.setBackground(new Color(105,105,105));
+		cf.undecorateButton(forgetButton);
+		//forgetButton.setBackground(new Color(105,105,105));
 		cf.setColor(loginButton, 3, 16, true);
-		cf.setColor(forgetButton, 3, 16, true);
+		cf.setColor(forgetButton, 3, 14, true);
 		w3=new JLabel();
 		
 		

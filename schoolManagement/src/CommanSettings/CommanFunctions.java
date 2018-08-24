@@ -25,7 +25,7 @@ public class CommanFunctions {
 		con.add(com,c);
 	}
 	public void setColor(Component com,int font, int size,boolean color) {
-		if(color) com.setForeground(Color.WHITE); else com.setForeground(new Color(105,105,105)); 
+		if(color) com.setForeground(Color.WHITE); else com.setForeground(new Color(2,119,189)); 
 		if(font==0) com.setFont(new Font("Bradley Hand ITC",Font.PLAIN,size));
 		if(font==1) com.setFont(new Font("Bradley Hand ITC",Font.BOLD,size));
 		if(font==2) com.setFont(new Font("Bradley Hand ITC",Font.ITALIC,size));

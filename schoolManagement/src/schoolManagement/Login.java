@@ -30,7 +30,7 @@ public class Login extends JFrame{
 	
 	
 	
-	JButton db1,db2,db3;
+	
 	GridBagConstraints c=new GridBagConstraints();
 	Dimension d=new Dimension();
 	CommanFunctions cf=new CommanFunctions();
@@ -44,16 +44,8 @@ public class Login extends JFrame{
 		//background image setting 
 		ImageIcon imageIcon=new ImageIcon("images/bg.jpeg");
 		Image image=imageIcon.getImage();
-		//Image newing=image.getScaledInstance(700, 480,Image.SCALE_SMOOTH);
-		//imageIcon=new ImageIcon(newing);
-		//JLabel l=new JLabel(imageIcon);
 		
 		
-		
-		//testing button
-		db1=new JButton("1");
-		db2=new JButton("2");
-		db3=new JButton("");
 		
 		d=Toolkit.getDefaultToolkit().getScreenSize();
 		//components
@@ -113,11 +105,11 @@ public class Login extends JFrame{
 		
 		//center down components user name and password
 		this.userName=new JLabel("USER NAME");
-		cf.setColor(this.userName, 3, 16,true);
+		cf.setColor(this.userName, 1, 16,true);
 		user=new JTextField(14);
 		cf.setColor(user, 2, 14,false);
 		userPassword=new JLabel("PASSWORD");
-		cf.setColor(userPassword, 3, 16, true);
+		cf.setColor(userPassword, 1, 16, true);
 		password=new JTextField(14);
 		cf.setColor(password, 2, 14, false);
 		b1=new JLabel();

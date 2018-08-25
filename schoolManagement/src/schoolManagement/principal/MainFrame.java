@@ -8,12 +8,17 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.concurrent.BrokenBarrierException;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.*;
 
 import CommanSettings.CommanFunctions;
+import CommanSettings.DBConnect;
 import beans.MyPanel;
+import oracle.jdbc.driver.Message;
 
 public class MainFrame extends JFrame{
 	Dimension d;
@@ -28,8 +33,10 @@ public class MainFrame extends JFrame{
 	PMenu pMenu;
 	VMenu vMenu;
 	adminInfo admin;
+	EmployeeInfo employee;
 	EditMe editMe;
 	ChangePassword cp1;
+	
 	public MainFrame(String name) {
 		d=getToolkit().getScreenSize();
 		setUndecorated(true);
@@ -64,7 +71,7 @@ public class MainFrame extends JFrame{
 		
 		
 		
-		cf.addBag(titlePanel,title,c,1215,20,1,0,0,0,GridBagConstraints.LINE_START);
+		cf.addBag(titlePanel,title,c,1015,20,1,0,0,0,GridBagConstraints.LINE_START);
 		
 		
 		
@@ -92,13 +99,16 @@ public class MainFrame extends JFrame{
 		
 		//center right
 		admin=new adminInfo();
-		
+		employee=new EmployeeInfo();
 		
 		
 		if(name.equals("PRINCIPAL")) {
-			centerPanel.add(pMenu,BorderLayout.NORTH);
+			
 			pMenu.setVisible(true);
 			
+			
+			
+			//admin menu ke action Listener
 			//adminInfo top menu
 			pMenu.adminButton.addActionListener(new ActionListener() {
 				
@@ -107,8 +117,9 @@ public class MainFrame extends JFrame{
 					admin.setVisible(true);
 					editMe.setVisible(true);
 					cp1.setVisible(false);
+					employee.setVisible(false);
 				}
-			});
+			});		
 			
 			//editme right menu
 			admin.editMe.addActionListener(new ActionListener() {
@@ -134,35 +145,37 @@ public class MainFrame extends JFrame{
 					editMe.vaddress.setEditable(false);
 					editMe.pSave2.setVisible(false);
 
-					
+					cp1.setVisible(false);
 				}
 			});
 			
-			//edit Visprincipal right menu
-			admin.editVis.addActionListener(new ActionListener() {
 			
+			editMe.save1.addActionListener(new ActionListener() {
+	
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					editMe.setVisible(true);
-					editMe.vprincipal.setEditable(true);
-					editMe.vage.setEditable(true);
-					editMe.vjoining.setEditable(true);
-					editMe.veMail.setEditable(true);
-					editMe.vmobile.setEditable(true);
-					editMe.vhome.setEditable(true);
-					editMe.vaddress.setEditable(true);
-					editMe.pSave2.setVisible(true);
-					
-					
-					editMe.principal.setEditable(false);
-					editMe.age.setEditable(false);
-					editMe.joining.setEditable(false);
-					editMe.eMail.setEditable(false);
-					editMe.mobile.setEditable(false);
-					editMe.home.setEditable(false);
-					editMe.address.setEditable(false);
-					editMe.pSave.setVisible(false);
-
+					try {
+						DBConnect x=new DBConnect();
+						String sql="update adminlog set aname='"+editMe.principal.getText()+
+								"',aage="+editMe.age.getText()+
+								",ajdate=TO_DATE('"+editMe.joining.getText()+
+								"','YYYY/MM/DD'),aemail='"+editMe.eMail.getText()+
+								"',amobile='"+editMe.mobile.getText()+
+								"',alline='"+editMe.home.getText()+
+								"',aaddress='"+editMe.address.getText()+"' where atype='PRINCIPAL'";
+						x.QueryExecuter(sql);
+						editMe.principal.setEditable(false);
+						editMe.age.setEditable(false);
+						editMe.joining.setEditable(false);
+						editMe.eMail.setEditable(false);
+						editMe.mobile.setEditable(false);
+						editMe.home.setEditable(false);
+						editMe.address.setEditable(false);
+						editMe.pSave.setVisible(false);
+						JOptionPane.showMessageDialog(null, "Data Updated Sucessfully");
+					}catch(Exception ex) {
+						System.out.println(ex);
+					}
 					
 				}
 			});
@@ -181,17 +194,107 @@ public class MainFrame extends JFrame{
 					editMe.home.setEditable(false);
 					editMe.address.setEditable(false);
 					editMe.pSave.setVisible(false);
+					
+					try {
+						DBConnect x=new DBConnect();
+						String sql="select * from adminlog";
+						ResultSet rs=x.QueryReturner(sql);
+						rs.next();
+									
+						String date=rs.getDate(4).toString();
+						java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+						SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+						String d=sdf.format(date1);
+						
+						editMe.principal.setText(rs.getString(2));
+						editMe.age.setText(rs.getString(3));
+						editMe.joining.setText(d);
+						editMe.eMail.setText(rs.getString(5));
+						editMe.mobile.setText(rs.getString(6));
+						editMe.home.setText(rs.getString(7));
+						editMe.address.setText(rs.getString(8));
+						
+					}catch(Exception ex) {
+						System.out.println(ex);
+					}
 
 					
 				}
 			});
 			
+		}
+		
 
-			//cancel of editVis right menu
-			editMe.cancel2.addActionListener(new ActionListener() {
+			
+		if(name.equals("VIS-PRINCIPAL")) {
+			pMenu.setVisible(true);
+			admin.editMe.setVisible(false);
+			admin.editVis.setText("Edit Me");
+			admin.s0.setVisible(false);
+			
+			//admin menu ke action Listener
+			//adminInfo top menu
+			pMenu.adminButton.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					admin.setVisible(true);
+					editMe.setVisible(true);
+					cp1.setVisible(false);
+				}
+			});		
+			
+			
+		}
+		
+		
+		
+		
+		
+		//edit Visprincipal right menu
+		admin.editVis.addActionListener(new ActionListener() {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editMe.setVisible(true);
+				editMe.vprincipal.setEditable(true);
+				editMe.vage.setEditable(true);
+				editMe.vjoining.setEditable(true);
+				editMe.veMail.setEditable(true);
+				editMe.vmobile.setEditable(true);
+				editMe.vhome.setEditable(true);
+				editMe.vaddress.setEditable(true);
+				editMe.pSave2.setVisible(true);
+				
+				
+				editMe.principal.setEditable(false);
+				editMe.age.setEditable(false);
+				editMe.joining.setEditable(false);
+				editMe.eMail.setEditable(false);
+				editMe.mobile.setEditable(false);
+				editMe.home.setEditable(false);
+				editMe.address.setEditable(false);
+				editMe.pSave.setVisible(false);
+
+				cp1.setVisible(false);
+			}
+		});
+		
+		
+		editMe.save2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DBConnect x=new DBConnect();
+					String sql="update adminlog set aname='"+editMe.vprincipal.getText()+
+							"',aage="+editMe.vage.getText()+
+							",ajdate=TO_DATE('"+editMe.vjoining.getText()+
+							"','YYYY/MM/DD'),aemail='"+editMe.veMail.getText()+
+							"',amobile='"+editMe.vmobile.getText()+
+							"',alline='"+editMe.vhome.getText()+
+							"',aaddress='"+editMe.vaddress.getText()+"' where atype='VIS-PRINCIPAL'";
+					x.QueryExecuter(sql);
 					editMe.vprincipal.setEditable(false);
 					editMe.vage.setEditable(false);
 					editMe.vjoining.setEditable(false);
@@ -200,40 +303,151 @@ public class MainFrame extends JFrame{
 					editMe.vhome.setEditable(false);
 					editMe.vaddress.setEditable(false);
 					editMe.pSave2.setVisible(false);
-
-					
+					JOptionPane.showMessageDialog(null, "Data Updated Sucessfully");
+				}catch(Exception ex) {
+					System.out.println(ex);
 				}
-			});
-
-			
-			
-			admin.changePassword.addActionListener(new ActionListener() {
 				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					editMe.setVisible(false);
-					cp1.setVisible(true);
-					
-				}
-			});
+			}
+		});
+
+		
+		
+
+		//cancel of editVis right menu
+		editMe.cancel2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editMe.vprincipal.setEditable(false);
+				editMe.vage.setEditable(false);
+				editMe.vjoining.setEditable(false);
+				editMe.veMail.setEditable(false);
+				editMe.vmobile.setEditable(false);
+				editMe.vhome.setEditable(false);
+				editMe.vaddress.setEditable(false);
+				editMe.pSave2.setVisible(false);
+				try {
+				DBConnect x=new DBConnect();
+				String sql="select * from adminlog";
+				ResultSet rs=x.QueryReturner(sql);
+				rs.next();
+				rs.next();
+				
+				String datev=rs.getDate(4).toString();
+				java.util.Date date1v=new SimpleDateFormat("yyyy-MM-dd").parse(datev);
+				SimpleDateFormat sdfv=new SimpleDateFormat("yyyy-MM-dd");
+				String dv=sdfv.format(date1v);
+				
+				editMe.vprincipal.setText(rs.getString(2));
+				editMe.vage.setText(rs.getString(3));
+				editMe.vjoining.setText(dv);
+				editMe.veMail.setText(rs.getString(5));
+				editMe.vmobile.setText(rs.getString(6));
+				editMe.vhome.setText(rs.getString(7));
+				editMe.vaddress.setText(rs.getString(8));
+			
+				}catch(Exception ex) {}
+			}
+		});
+
+		
+		
+		
+		
+		
+		//open change password action active	
+		admin.changePassword.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editMe.setVisible(false);
+				cp1.setVisible(true);
+				
+			}
+		});
+		
+		
+		cp1.save.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DBConnect x=new DBConnect();
+					String sql="update adminlog set apassword='"+ cp1.enewp2.getText() +"' where apassword='"+cp1.eolderp.getText()+"' and atype='"+name+"'";
+					x.QueryExecuter(sql);
+					JOptionPane.showMessageDialog(null, "Password Changed");
+				}catch(Exception ex) {}
+				
+			}
+		});
+		
+		
+		cp1.cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				admin.setVisible(true);
+				editMe.setVisible(true);
+				cp1.setVisible(false);
+			}
+		});
+		
+
+		pMenu.empButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				admin.setVisible(false);
+				editMe.setVisible(false);
+				cp1.setVisible(false);
+				employee.setVisible(true);
+				
+			}
+		});
+		
+		try {
+			DBConnect x=new DBConnect();
+			String sql="select * from adminlog";
+			ResultSet rs=x.QueryReturner(sql);
+			rs.next();
+						
+			String date=rs.getDate(4).toString();
+			java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			String d=sdf.format(date1);
+			
+			editMe.principal.setText(rs.getString(2));
+			editMe.age.setText(rs.getString(3));
+			editMe.joining.setText(d);
+			editMe.eMail.setText(rs.getString(5));
+			editMe.mobile.setText(rs.getString(6));
+			editMe.home.setText(rs.getString(7));
+			editMe.address.setText(rs.getString(8));
 			
 			
+			rs.next();
+			
+			String datev=rs.getDate(4).toString();
+			java.util.Date date1v=new SimpleDateFormat("yyyy-MM-dd").parse(datev);
+			SimpleDateFormat sdfv=new SimpleDateFormat("yyyy-MM-dd");
+			String dv=sdfv.format(date1v);
+			
+			editMe.vprincipal.setText(rs.getString(2));
+			editMe.vage.setText(rs.getString(3));
+			editMe.vjoining.setText(dv);
+			editMe.veMail.setText(rs.getString(5));
+			editMe.vmobile.setText(rs.getString(6));
+			editMe.vhome.setText(rs.getString(7));
+			editMe.vaddress.setText(rs.getString(8));
 			
 			
+		}catch(Exception e) {
+			System.out.println(e);
 		}
-			
-		if(name.equals("VIS-PRINCIPAL")) {
-			centerPanel.add(vMenu,BorderLayout.NORTH);
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		}
+		
+		
+		
 		
 		
 		
@@ -254,7 +468,7 @@ public class MainFrame extends JFrame{
 		centerRightPanel=new JPanel();
 		centerRightPanel.setBackground(new Color(105,105,105));
 		centerRightPanel.add(admin);
-		
+		centerRightPanel.add(employee);
 		
 		
 		
@@ -265,7 +479,7 @@ public class MainFrame extends JFrame{
 		
 		
 		
-		
+		centerPanel.add(pMenu,BorderLayout.NORTH);
 		centerPanel.add(centerRightPanel,BorderLayout.EAST);
 		centerPanel.add(centerCenterPanel,BorderLayout.CENTER);
 		
@@ -282,9 +496,5 @@ public class MainFrame extends JFrame{
 			}
 		});
 		
-	}
-	
-	public static void main(String args[]) {
-		new MainFrame("PRINCIPAL");
 	}
 }

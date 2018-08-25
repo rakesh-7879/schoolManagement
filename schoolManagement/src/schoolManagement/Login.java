@@ -12,12 +12,15 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 import javax.swing.*;
 
 import CommanSettings.CommanFunctions;
+import CommanSettings.DBConnect;
 import beans.*;
 import schoolManagement.indexClass;
+import schoolManagement.principal.MainFrame;
 
 public class Login extends JFrame{
 	JPanel topPanel,titlePanel,centerUpPanel,centerDownPanel,centerPanel,userDetail,logButton;
@@ -107,11 +110,11 @@ public class Login extends JFrame{
 		this.userName=new JLabel("USER NAME");
 		cf.setColor(this.userName, 1, 16,true);
 		user=new JTextField(14);
-		cf.setColor(user, 2, 14,false);
+		cf.setColor(user, 3, 14,false);
 		userPassword=new JLabel("PASSWORD");
 		cf.setColor(userPassword, 1, 16, true);
 		password=new JTextField(14);
-		cf.setColor(password, 2, 14, false);
+		cf.setColor(password, 3, 14, false);
 		b1=new JLabel();
 		b2=new JLabel();
 		b3=new JLabel();
@@ -192,6 +195,27 @@ public class Login extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				new indexClass();
+			}
+		});
+		loginButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DBConnect x=new DBConnect();
+					String sql="select ausername,apassword from adminlog where atype='"+userName+"'";
+					ResultSet rs=x.QueryReturner(sql);
+					rs.next();
+					if(rs.getString(1).equals(user.getText()) && rs.getString(2).equals(password.getText()) ){
+						new MainFrame(userName);
+					}else {
+						w3.setText("wong password");
+					}
+				}catch(Exception ex) {
+					System.out.println(ex);
+				}
+				
+				
 			}
 		});
 

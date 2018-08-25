@@ -38,40 +38,40 @@ public class EditMe extends JPanel{
 		cf.setColor(pName, 2, 14, true);
 		principal=new JTextField(15);
 		principal.setEditable(false);
-		cf.setColor(principal, 2, 14, false);
+		cf.setColor(principal, 3, 14, false);
 		
 		pAge=new JLabel("Principal Age");
 		cf.setColor(pAge, 2, 14, true);
 		age=new JTextField(15);
 		age.setEditable(false);
-		cf.setColor(age, 2, 14, false);
+		cf.setColor(age, 3, 14, false);
 		
 		pJoining=new JLabel("Joining Date");
 		cf.setColor(pJoining, 2, 14, true);
 		joining=new JTextField(15);
 		joining.setEditable(false);
-		cf.setColor(joining, 2, 14, false);
+		cf.setColor(joining, 3, 14, false);
 		
 		
 		pEMail=new JLabel("EMail Address");
 		cf.setColor(pEMail, 2, 14, true);
 		eMail=new JTextField(15);
 		eMail.setEditable(false);
-		cf.setColor(eMail, 2, 14, false);
+		cf.setColor(eMail, 3, 14, false);
 		
 		
 		pMobile=new JLabel("Mobile Number");
 		cf.setColor(pMobile, 2, 14, true);
 		mobile=new JTextField(15);
 		mobile.setEditable(false);
-		cf.setColor(mobile, 2, 14, false);
+		cf.setColor(mobile, 3, 14, false);
 		
 		
 		pHome=new JLabel("Landline Number");
 		cf.setColor(pHome, 2, 14, true);
 		home=new JTextField(15);
 		home.setEditable(false);
-		cf.setColor(home, 2, 14, false);
+		cf.setColor(home, 3, 14, false);
 		
 		
 		
@@ -79,12 +79,12 @@ public class EditMe extends JPanel{
 		cf.setColor(pAddress, 2, 14, true);
 		address=new JTextField(15);
 		address.setEditable(false);
-		cf.setColor(address, 2, 14, false);		
+		cf.setColor(address, 3, 14, false);		
 		
 		//save
 		save1=new JButton("Save");
-		cf.setColor(save1, 3, 14, false);
-		cf.undecorateButton(save1);
+		cf.setColor(save1, 3, 14, true);
+		save1.setBackground(new Color(105,105,105));
 		save1.setContentAreaFilled(true);
 		cancel1=new JButton("Cancel");
 		cf.setColor(cancel1, 3, 14, true);
@@ -153,40 +153,40 @@ public class EditMe extends JPanel{
 		cf.setColor(vName, 2, 14, true);
 		vprincipal=new JTextField(15);
 		vprincipal.setEditable(false);
-		cf.setColor(vprincipal, 2, 14, false);
+		cf.setColor(vprincipal, 3, 14, false);
 		
 		vAge=new JLabel("Vis-Principal Age");
 		cf.setColor(vAge, 2, 14, true);
 		vage=new JTextField(15);
 		vage.setEditable(false);
-		cf.setColor(vage, 2, 14, false);
+		cf.setColor(vage, 3, 14, false);
 		
 		vJoining=new JLabel("Joining Date");
 		cf.setColor(vJoining, 2, 14, true);
 		vjoining=new JTextField(15);
 		vjoining.setEditable(false);
-		cf.setColor(vjoining, 2, 14, false);
+		cf.setColor(vjoining, 3, 14, false);
 		
 		
 		vEMail=new JLabel("EMail Address");
 		cf.setColor(vEMail, 2, 14, true);
 		veMail=new JTextField(15);
 		veMail.setEditable(false);
-		cf.setColor(veMail, 2, 14, false);
+		cf.setColor(veMail, 3, 14, false);
 		
 		
 		vMobile=new JLabel("Mobile Number");
 		cf.setColor(vMobile, 2, 14, true);
 		vmobile=new JTextField(15);
 		vmobile.setEditable(false);
-		cf.setColor(vmobile, 2, 14, false);
+		cf.setColor(vmobile, 3, 14, false);
 		
 		
 		vHome=new JLabel("Landline Number");
 		cf.setColor(vHome, 2, 14, true);
 		vhome=new JTextField(15);
 		vhome.setEditable(false);
-		cf.setColor(vhome, 2, 14, false);
+		cf.setColor(vhome, 3, 14, false);
 		
 		
 		
@@ -194,12 +194,12 @@ public class EditMe extends JPanel{
 		cf.setColor(vAddress, 2, 14, true);
 		vaddress=new JTextField(15);
 		vaddress.setEditable(false);
-		cf.setColor(vaddress, 2, 14, false);		
+		cf.setColor(vaddress, 3, 14, false);		
 		
 		//save
 		save2=new JButton("Save");
-		cf.setColor(save2, 3, 14, false);
-		cf.undecorateButton(save2);
+		cf.setColor(save2, 3, 14, true);
+		save2.setBackground(new Color(105,105,105));
 		save2.setContentAreaFilled(true);
 		cancel2=new JButton("Cancel");
 		cf.setColor(cancel2, 3, 14, true);

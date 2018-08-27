@@ -405,6 +405,48 @@ public class EditMe extends JPanel{
 				
 			}
 		});
+		
+
+		try {
+			DBConnect x=new DBConnect();
+			String sql="select * from adminlog";
+			ResultSet rs=x.QueryReturner(sql);
+			rs.next();
+						
+			String date=rs.getDate(4).toString();
+			java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			String d=sdf.format(date1);
+			
+			principal.setText(rs.getString(2));
+			age.setText(rs.getString(3));
+			joining.setText(d);
+			eMail.setText(rs.getString(5));
+			mobile.setText(rs.getString(6));
+			home.setText(rs.getString(7));
+			address.setText(rs.getString(8));
+			
+			
+			rs.next();
+			
+			String datev=rs.getDate(4).toString();
+			java.util.Date date1v=new SimpleDateFormat("yyyy-MM-dd").parse(datev);
+			SimpleDateFormat sdfv=new SimpleDateFormat("yyyy-MM-dd");
+			String dv=sdfv.format(date1v);
+			
+			vprincipal.setText(rs.getString(2));
+			vage.setText(rs.getString(3));
+			vjoining.setText(dv);
+			veMail.setText(rs.getString(5));
+			vmobile.setText(rs.getString(6));
+			vhome.setText(rs.getString(7));
+			vaddress.setText(rs.getString(8));
+			
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
 
 	}
 }

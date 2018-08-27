@@ -38,7 +38,7 @@ public class MainFrame extends JFrame{
 	ChangePassword cp1;
 	AddEmployee ae;
 	ShowManager sm;
-	
+	ShowTeacher st;
 	public MainFrame(String name) {
 		d=getToolkit().getScreenSize();
 		setUndecorated(true);
@@ -98,6 +98,7 @@ public class MainFrame extends JFrame{
 		cp1=new ChangePassword();
 		ae=new AddEmployee();
 		sm=new ShowManager();
+		st=new ShowTeacher();
 		
 		
 		//center right
@@ -123,6 +124,7 @@ public class MainFrame extends JFrame{
 					employee.setVisible(false);
 					ae.setVisible(false);
 					sm.setVisible(false);
+					st.setVisible(false);
 				}
 			});		
 			
@@ -178,6 +180,7 @@ public class MainFrame extends JFrame{
 					employee.setVisible(false);
 					ae.setVisible(false);
 					sm.setVisible(false);
+					st.setVisible(false);
 				}
 			});		
 			
@@ -271,48 +274,9 @@ public class MainFrame extends JFrame{
 				employee.setVisible(true);
 				ae.setVisible(true);
 				sm.setVisible(false);
+				st.setVisible(false);
 			}
 		});
-		
-		try {
-			DBConnect x=new DBConnect();
-			String sql="select * from adminlog";
-			ResultSet rs=x.QueryReturner(sql);
-			rs.next();
-						
-			String date=rs.getDate(4).toString();
-			java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-			String d=sdf.format(date1);
-			
-			editMe.principal.setText(rs.getString(2));
-			editMe.age.setText(rs.getString(3));
-			editMe.joining.setText(d);
-			editMe.eMail.setText(rs.getString(5));
-			editMe.mobile.setText(rs.getString(6));
-			editMe.home.setText(rs.getString(7));
-			editMe.address.setText(rs.getString(8));
-			
-			
-			rs.next();
-			
-			String datev=rs.getDate(4).toString();
-			java.util.Date date1v=new SimpleDateFormat("yyyy-MM-dd").parse(datev);
-			SimpleDateFormat sdfv=new SimpleDateFormat("yyyy-MM-dd");
-			String dv=sdfv.format(date1v);
-			
-			editMe.vprincipal.setText(rs.getString(2));
-			editMe.vage.setText(rs.getString(3));
-			editMe.vjoining.setText(dv);
-			editMe.veMail.setText(rs.getString(5));
-			editMe.vmobile.setText(rs.getString(6));
-			editMe.vhome.setText(rs.getString(7));
-			editMe.vaddress.setText(rs.getString(8));
-			
-			
-		}catch(Exception e) {
-			System.out.println(e);
-		}
 		
 		employee.addEmployee.addActionListener(new ActionListener() {
 			
@@ -324,6 +288,7 @@ public class MainFrame extends JFrame{
 				employee.setVisible(true);
 				ae.setVisible(true);
 				sm.setVisible(false);
+				st.setVisible(false);
 				}
 		});
 
@@ -338,7 +303,22 @@ public class MainFrame extends JFrame{
 				employee.setVisible(true);
 				ae.setVisible(false);
 				sm.setVisible(true);
-				
+				st.setVisible(false);
+			}
+		});
+		
+		
+		employee.teachers.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				admin.setVisible(false);
+				editMe.setVisible(false);
+				cp1.setVisible(false);
+				employee.setVisible(true);
+				ae.setVisible(false);
+				sm.setVisible(false);
+				st.setVisible(true);
 			}
 		});
 		
@@ -353,6 +333,7 @@ public class MainFrame extends JFrame{
 		centerCenterPanel.add(cp1);
 		centerCenterPanel.add(ae);
 		centerCenterPanel.add(sm);
+		centerCenterPanel.add(st);
 		
 		
 		

@@ -18,7 +18,7 @@ import javax.swing.table.TableColumnModel;
 import CommanSettings.CommanFunctions;
 import CommanSettings.DBConnect;
 
-public class ShowManager extends JPanel {
+public class ShowTeacher extends JPanel {
 	JPanel titlePanel,dataPanel,tablePanel;
 	JLabel title,userName,name,age,jDate,eMail,mobile,lline,address,type;
 	JTextField euser,ename,eage,ejDate,eeMail,emobile,elline,eaddress;
@@ -30,13 +30,13 @@ public class ShowManager extends JPanel {
 	GridBagConstraints c=new GridBagConstraints();
 	ResultSet rs = null;
 	String pass;
-	public ShowManager() {
+	public ShowTeacher() {
 		setOpaque(false);
 		setVisible(false);
 		setLayout(new GridBagLayout());
 		
 		//title panel
-		title=new JLabel("Managers");
+		title=new JLabel("Teachers");
 		cf.setColor(title, 3, 14, true);		
 		
 		titlePanel=new JPanel();
@@ -385,7 +385,7 @@ public class ShowManager extends JPanel {
 					
 				try {
 					DBConnect x=new DBConnect();
-					String sql="select * from adminlog where atype='FEES MANAGER'";
+					String sql="select * from adminlog where atype='TEACHER'";
 					rs=x.QueryReturner(sql);
 					rs.next();
 					while(a!=0) {
@@ -436,7 +436,7 @@ public class ShowManager extends JPanel {
 		
 		try {
 			DBConnect x=new DBConnect();
-			String sql="select aname,aage,ajdate,aemail,amobile,alline,aaddress from adminlog where atype='FEES MANAGER'";
+			String sql="select aname,aage,ajdate,aemail,amobile,alline,aaddress from adminlog where atype='TEACHER'";
 			rs=x.QueryReturner(sql);
 		
 		

@@ -4,10 +4,15 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
 import CommanSettings.CommanFunctions;
+import CommanSettings.DBConnect;
 
 
 public class EditMe extends JPanel{
@@ -256,5 +261,150 @@ public class EditMe extends JPanel{
 		cf.addBag(this,new JSeparator(),c,0,100,0,1,0,0,GridBagConstraints.PAGE_START);
 		cf.addBag(this,down,c,0,0,0,2,0,0,GridBagConstraints.PAGE_START);
 		
+		
+		save1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DBConnect x=new DBConnect();
+					String sql="update adminlog set aname='"+principal.getText()+
+							"',aage="+age.getText()+
+							",ajdate=TO_DATE('"+joining.getText()+
+							"','YYYY/MM/DD'),aemail='"+eMail.getText()+
+							"',amobile='"+mobile.getText()+
+							"',alline='"+home.getText()+
+							"',aaddress='"+address.getText()+"' where atype='PRINCIPAL'";
+					x.QueryExecuter(sql);
+					principal.setEditable(false);
+					age.setEditable(false);
+					joining.setEditable(false);
+					eMail.setEditable(false);
+					mobile.setEditable(false);
+					home.setEditable(false);
+					address.setEditable(false);
+					pSave.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Data Updated Sucessfully");
+				}catch(Exception ex) {
+					System.out.println(ex);
+				}
+				
+			}
+		});
+		
+		
+		//cancel of editme right menu
+		cancel1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				principal.setEditable(false);
+				age.setEditable(false);
+				joining.setEditable(false);
+				eMail.setEditable(false);
+				mobile.setEditable(false);
+				home.setEditable(false);
+				address.setEditable(false);
+				pSave.setVisible(false);
+				
+				try {
+					DBConnect x=new DBConnect();
+					String sql="select * from adminlog";
+					ResultSet rs=x.QueryReturner(sql);
+					rs.next();
+								
+					String date=rs.getDate(4).toString();
+					java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+					SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+					String d=sdf.format(date1);
+					
+					principal.setText(rs.getString(2));
+					age.setText(rs.getString(3));
+					joining.setText(d);
+					eMail.setText(rs.getString(5));
+					mobile.setText(rs.getString(6));
+					home.setText(rs.getString(7));
+					address.setText(rs.getString(8));
+					
+				}catch(Exception ex) {
+					System.out.println(ex);
+				}
+				
+				save2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							DBConnect x=new DBConnect();
+							String sql="update adminlog set aname='"+vprincipal.getText()+
+									"',aage="+vage.getText()+
+									",ajdate=TO_DATE('"+vjoining.getText()+
+									"','YYYY/MM/DD'),aemail='"+veMail.getText()+
+									"',amobile='"+vmobile.getText()+
+									"',alline='"+vhome.getText()+
+									"',aaddress='"+vaddress.getText()+"' where atype='VIS-PRINCIPAL'";
+							x.QueryExecuter(sql);
+							vprincipal.setEditable(false);
+							vage.setEditable(false);
+							vjoining.setEditable(false);
+							veMail.setEditable(false);
+							vmobile.setEditable(false);
+							vhome.setEditable(false);
+							vaddress.setEditable(false);
+							pSave2.setVisible(false);
+							JOptionPane.showMessageDialog(null, "Data Updated Sucessfully");
+						}catch(Exception ex) {
+							System.out.println(ex);
+						}
+						
+					}
+				});
+
+				
+				
+
+				//cancel of editVis right menu
+				cancel2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						vprincipal.setEditable(false);
+						vage.setEditable(false);
+						vjoining.setEditable(false);
+						veMail.setEditable(false);
+						vmobile.setEditable(false);
+						vhome.setEditable(false);
+						vaddress.setEditable(false);
+						pSave2.setVisible(false);
+						try {
+						DBConnect x=new DBConnect();
+						String sql="select * from adminlog";
+						ResultSet rs=x.QueryReturner(sql);
+						rs.next();
+						rs.next();
+						
+						String datev=rs.getDate(4).toString();
+						java.util.Date date1v=new SimpleDateFormat("yyyy-MM-dd").parse(datev);
+						SimpleDateFormat sdfv=new SimpleDateFormat("yyyy-MM-dd");
+						String dv=sdfv.format(date1v);
+						
+						vprincipal.setText(rs.getString(2));
+						vage.setText(rs.getString(3));
+						vjoining.setText(dv);
+						veMail.setText(rs.getString(5));
+						vmobile.setText(rs.getString(6));
+						vhome.setText(rs.getString(7));
+						vaddress.setText(rs.getString(8));
+					
+						}catch(Exception ex) {}
+					}
+				});
+
+
+
+				
+			}
+		});
+
 	}
 }

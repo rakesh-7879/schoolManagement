@@ -161,7 +161,6 @@ public class Login extends JFrame{
 		logButton.setOpaque(false);
 		logButton.add(loginButton);
 		logButton.add(forgetButton);
-		logButton.add(w3);
 		
 		
 		
@@ -183,6 +182,7 @@ public class Login extends JFrame{
 		
 		cf.addBag(centerPanel,centerUpPanel,c,0,240,1,0,0,0,GridBagConstraints.NORTH);
 		cf.addBag(centerPanel,centerDownPanel,c,0,80,1,0,0,0,GridBagConstraints.SOUTH);
+		cf.addBag(centerPanel,w3,c,0,80,1,1,0,0,GridBagConstraints.SOUTH);
 		
 		
 		mainPanel.add(topPanel,BorderLayout.NORTH);

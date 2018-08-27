@@ -10,7 +10,7 @@ import javax.swing.JPopupMenu.Separator;
 import CommanSettings.CommanFunctions;
 
 public class EmployeeInfo extends JPanel{
-	JButton addManager,addTeacher,managers,teachers;
+	JButton addEmployee,managers,teachers;
 	JSeparator s0,s1,s2;
 	GridBagConstraints c=new GridBagConstraints();
 	CommanFunctions cf=new CommanFunctions();
@@ -22,13 +22,9 @@ public class EmployeeInfo extends JPanel{
 		
 		
 		
-		addManager=new JButton("Add Manager");
-		cf.setColor(addManager, 3, 16, true);
-		cf.undecorateButton(addManager);
-		
-		addTeacher=new JButton("Add Teacher");
-		cf.setColor(addTeacher, 3, 16, true);
-		cf.undecorateButton(addTeacher);
+		addEmployee=new JButton("Add Employee");
+		cf.setColor(addEmployee, 3, 16, true);
+		cf.undecorateButton(addEmployee);
 		
 		managers=new JButton("Managers");
 		cf.setColor(managers, 3, 16, true);
@@ -42,9 +38,7 @@ public class EmployeeInfo extends JPanel{
 		s1=new JSeparator();
 		s2=new JSeparator();
 		
-		cf.addBag(this,addManager,c,0,0,0,0,0,0,GridBagConstraints.SOUTH);
-		cf.addBag(this,s0,c,200,10,0,1,0,0,GridBagConstraints.SOUTH);
-		cf.addBag(this,addTeacher,c,0,0,0,2,0,0,GridBagConstraints.SOUTH);
+		cf.addBag(this,addEmployee,c,0,0,0,2,0,0,GridBagConstraints.SOUTH);
 		cf.addBag(this,s1,c,200,10,0,3,0,0,GridBagConstraints.SOUTH);
 		cf.addBag(this,new JSeparator(),c,200,10,0,4,0,0,GridBagConstraints.SOUTH);
 		cf.addBag(this,managers,c,0,0,0,5,0,0,GridBagConstraints.SOUTH);

@@ -13,6 +13,7 @@ public class CommanFunctions {
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
+		button.setFocusPainted(false);
 	}
 	public void addBag(Container con, Component com,GridBagConstraints c,int ipx,int ipy,int gx,int gy,double wx,double wy,int anr){
 		c.ipadx=ipx;

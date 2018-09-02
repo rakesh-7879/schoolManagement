@@ -34,8 +34,8 @@ public class AddEmployee extends JPanel {
 		titlePanel.setLayout(new GridBagLayout());
 		titlePanel.setOpaque(false);
 		
-		cf.addBag(titlePanel, title, c, 0, 5, 0, 0, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(titlePanel, new JSeparator(), c, 100, 0, 0, 1, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(titlePanel, title, c, 20, 5, 0, 0, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(titlePanel, new JSeparator(), c, 120, 0, 0, 1, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
 		
 		//data panel
@@ -123,51 +123,51 @@ public class AddEmployee extends JPanel {
 		
 		cf.addBag(dataPanel, wuser, c, 0, 10, 2, 1, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, name, c, 20, 0, 3, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, ename, c, 0, 0, 5, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, age, c, 20, 0, 7, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eage, c, 0, 0, 9, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, name, c, 20, 0, 0, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, ename, c, 0, 0, 2, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, age, c, 20, 0, 4, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eage, c, 0, 0, 6, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, wname, c, 0, 10, 5, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, wage, c, 0, 10, 9, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wname, c, 0, 10, 2, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wage, c, 0, 10, 6, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, jDate, c, 20, 0, 3, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, ejDate, c, 0, 0, 5, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eMail, c, 20, 0, 7, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eeMail, c, 0, 0, 9, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, jDate, c, 20, 0, 0, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, ejDate, c, 0, 0, 2, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eMail, c, 20, 0, 4, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eeMail, c, 0, 0, 6, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, wjDate, c, 0, 10, 5, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, weMail, c, 0, 10, 9, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wjDate, c, 0, 10, 2, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, weMail, c, 0, 10, 6, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, mobile, c, 20, 0, 3, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, emobile, c, 0, 0, 5, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, lline, c, 20, 0, 7, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, elline, c, 0, 0, 9, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, mobile, c, 20, 0, 0, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, emobile, c, 0, 0, 2, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, lline, c, 20, 0, 4, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, elline, c, 0, 0, 6, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, wmobile, c, 0, 10, 5, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, wlline, c, 0, 10, 9, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wmobile, c, 0, 10, 2, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wlline, c, 0, 10, 6, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, address, c, 20, 0, 3, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eaddress, c, 0, 0, 5, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, type, c, 20, 0, 7, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, etype, c, 30, 0, 9, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, address, c, 20, 0, 0, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eaddress, c, 0, 0, 2, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, type, c, 20, 0, 4, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, etype, c, 30, 0, 6, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, waddress, c, 0, 10, 5, 9, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, waddress, c, 0, 10, 2, 9, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, save, c, 0, 10, 8, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, reset, c, 0, 10, 9, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, save, c, 0, 10, 5, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, reset, c, 0, 10, 6, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
 		
 		
@@ -330,34 +330,6 @@ public class AddEmployee extends JPanel {
 
 
 		
-		
-		save.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(wuser.getText().equals("Avalible") && wname.getText().equals(" ") && wage.getText().equals(" ") && wjDate.getText().equals(" ") && weMail.getText().equals(" ")  && wmobile.getText().equals(" ") && wlline.getText().equals(" ") && waddress.getText().equals(" ")) {
-					try {
-						DBConnect x=new DBConnect();
-						String sql="insert into adminlog values('"+euser.getText()+"','"+
-						ename.getText()+"',"+
-						eage.getText()+",TO_DATE('"+
-						ejDate.getText()+"','DD/MM/YYYY'),'"+
-						eeMail.getText()+"','"+
-						emobile.getText()+"','"+
-						elline.getText()+"','"+
-						eaddress.getText()+"','admin','"+
-						etype.getSelectedItem()+"')";
-						x.QueryExecuter(sql);
-						
-					}catch(Exception ex) {	System.out.println(ex);}
-					JOptionPane.showMessageDialog(null, "Data fill sucessfully");
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "first fill all the required textFieled");
-				}
-				
-			}
-		});		
 		
 		
 		

@@ -21,6 +21,7 @@ import CommanSettings.DBConnect;
 import beans.*;
 import schoolManagement.indexClass;
 import schoolManagement.principal.MainFrame;
+import users.UserMainFrame;
 
 public class Login extends JFrame{
 	JPanel topPanel,titlePanel,centerUpPanel,centerDownPanel,centerPanel,userDetail,logButton;
@@ -38,7 +39,7 @@ public class Login extends JFrame{
 	Dimension d=new Dimension();
 	CommanFunctions cf=new CommanFunctions();
 	
-	public Login(String userName) {
+	public Login(String Name) {
 		setUndecorated(true);
 		setVisible(true);
 		setBounds(100, 100, 700, 480);
@@ -66,15 +67,15 @@ public class Login extends JFrame{
 		
 		//image path
 		String path="";int a=460;
-		if(userName.equals("PRINCIPAL")) { path="images/admin.png";a=460;}
-		if(userName.equals("VIS-PRINCIPAL")) { path="images/subadmin.png";a=430;}
-		if(userName.equals("FEES MANAGER")) { path="images/manager.png";a=420;}
-		if(userName.equals("TEACHR")) { path="images/teacher.png";a=480;}
+		if(Name.equals("PRINCIPAL")) { path="images/admin.png";a=420;}
+		if(Name.equals("VICE-PRINCIPAL")) { path="images/subadmin.png";a=370;}
+		if(Name.equals("FEES MANAGER")) { path="images/manager.png";a=370;}
+		if(Name.equals("TEACHER")) { path="images/teacher.png";a=420;}
 
 		
 		
 		//top of the frame
-		title=new JLabel(userName+" LOGIN");
+		title=new JLabel(Name+" LOGIN");
 		cf.setColor(title, 3, 16,true);
 		ImageIcon imageIcon1=new ImageIcon("images/logo.png");
 		Image newing1=image.getScaledInstance(50, 50,Image.SCALE_SMOOTH);
@@ -103,25 +104,27 @@ public class Login extends JFrame{
 		
 		centerUpPanel=new JPanel();
 		centerUpPanel.setOpaque(false);
+		
 		centerUpPanel.add(userImage);
+		
 		
 		
 		//center down components user name and password
 		this.userName=new JLabel("USER NAME");
-		cf.setColor(this.userName, 1, 16,true);
-		user=new JTextField(14);
+		cf.setColor(this.userName, 2, 14,true);
+		user=new JTextField(12);
 		cf.setColor(user, 3, 14,false);
 		userPassword=new JLabel("PASSWORD");
-		cf.setColor(userPassword, 1, 16, true);
-		password=new JTextField(14);
+		cf.setColor(userPassword, 2, 14, true);
+		password=new JTextField(12);
 		cf.setColor(password, 3, 14, false);
 		b1=new JLabel();
 		b2=new JLabel();
 		b3=new JLabel();
 		s1=new JSeparator();
 		s2=new JSeparator();
-		w1=new JLabel();
-		w2=new JLabel();
+		w1=new JLabel(" ");
+		w2=new JLabel(" ");
 		
 		//center down components login buttons
 		loginButton=new JButton("Login");
@@ -130,7 +133,7 @@ public class Login extends JFrame{
 		cf.undecorateButton(forgetButton);
 		//forgetButton.setBackground(new Color(105,105,105));
 		cf.setColor(loginButton, 3, 16, true);
-		cf.setColor(forgetButton, 3, 14, true);
+		cf.setColor(forgetButton, 2, 14, true);
 		w3=new JLabel();
 		
 		
@@ -139,15 +142,18 @@ public class Login extends JFrame{
 		userDetail=new JPanel();
 		userDetail.setOpaque(false);
 		userDetail.setLayout(new GridLayout(4, 3));
-		userDetail.add(this.userName);
+		userDetail.add(userName);
 		userDetail.add(user);
 		userDetail.add(w1);
+		
 		userDetail.add(b1);
 		userDetail.add(b2);
 		userDetail.add(b3);
+		
 		userDetail.add(userPassword);
 		userDetail.add(password);
 		userDetail.add(w2);
+		
 		userDetail.add(s1);
 		userDetail.add(s2);
 		
@@ -167,6 +173,7 @@ public class Login extends JFrame{
 		
 		centerDownPanel=new JPanel();
 		centerDownPanel.setOpaque(false);
+		centerDownPanel.setLayout(new GridLayout(2, 1));
 		centerDownPanel.add(userDetail);
 		centerDownPanel.add(logButton);
 		
@@ -181,8 +188,8 @@ public class Login extends JFrame{
 		centerPanel.setLayout(new GridBagLayout());
 		
 		cf.addBag(centerPanel,centerUpPanel,c,0,240,1,0,0,0,GridBagConstraints.NORTH);
-		cf.addBag(centerPanel,centerDownPanel,c,0,80,1,0,0,0,GridBagConstraints.SOUTH);
-		cf.addBag(centerPanel,w3,c,0,80,1,1,0,0,GridBagConstraints.SOUTH);
+		cf.addBag(centerPanel,centerDownPanel,c,-10,-20,1,0,0,0,GridBagConstraints.SOUTH);
+		cf.addBag(centerPanel,w3,c,0,40,1,1,0,0,GridBagConstraints.SOUTH);
 		
 		
 		mainPanel.add(topPanel,BorderLayout.NORTH);
@@ -190,24 +197,28 @@ public class Login extends JFrame{
 		getContentPane().add(mainPanel);
 		
 		
-		//actionListener
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				new indexClass();
 			}
 		});
+		
+		if(Name.equals("PRINCIPAL") || Name.equals("VICE-PRINCIPAL")) {
+		//actionListener
+		
 		loginButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					DBConnect x=new DBConnect();
-					String sql="select ausername,apassword from adminlog where atype='"+userName+"'";
+					String sql="select ausername,apassword from adminlog where atype='"+Name+"'";
 					ResultSet rs=x.QueryReturner(sql);
 					rs.next();
 					if(rs.getString(1).equals(user.getText()) && rs.getString(2).equals(password.getText()) ){
-						new MainFrame(userName);
+						new MainFrame(Name,rs.getString(1));
+						dispose();
 					}else {
 						w3.setText("wong password");
 					}
@@ -218,8 +229,39 @@ public class Login extends JFrame{
 				
 			}
 		});
+		
+		
+		
 
 	}
+
+	if(Name.equals("FEES MANAGER") || Name.equals("TEACHER")) {
+
+	loginButton.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				DBConnect x=new DBConnect();
+				String sql="select ausername,apassword from adminlog where atype='"+Name+"'";
+				ResultSet rs=x.QueryReturner(sql);
+				while(rs.next()) {
+				if(rs.getString(1).equals(user.getText()) && rs.getString(2).equals(password.getText()) ){
+					new UserMainFrame(Name,rs.getString(1));					
+					dispose();
+				}
+				}
+				w3.setText("wong password          aaaaa");
+			}catch(Exception ex) {
+				System.out.println(ex);
+			}
+			
+			
+		}
+	});
+
+}
+}
 
 	
 }

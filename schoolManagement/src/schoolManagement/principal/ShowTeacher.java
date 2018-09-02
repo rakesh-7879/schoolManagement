@@ -30,6 +30,7 @@ public class ShowTeacher extends JPanel {
 	GridBagConstraints c=new GridBagConstraints();
 	ResultSet rs = null;
 	String pass;
+	DefaultTableModel dt;
 	public ShowTeacher() {
 		setOpaque(false);
 		setVisible(false);
@@ -134,53 +135,99 @@ public class ShowTeacher extends JPanel {
 		
 		cf.addBag(dataPanel, wuser, c, 0, 10, 2, 1, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, name, c, 20, 0, 3, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, ename, c, 0, 0, 5, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, age, c, 20, 0, 7, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eage, c, 0, 0, 9, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, name, c, 20, 0, 0, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, ename, c, 0, 0, 2, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, age, c, 20, 0, 4, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eage, c, 0, 0, 6, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, wname, c, 0, 10, 5, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, wage, c, 0, 10, 9, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wname, c, 0, 10, 2, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wage, c, 0, 10, 6, 3, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, jDate, c, 20, 0, 3, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, ejDate, c, 0, 0, 5, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eMail, c, 20, 0, 7, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eeMail, c, 0, 0, 9, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, jDate, c, 20, 0, 0, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, ejDate, c, 0, 0, 2, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eMail, c, 20, 0, 4, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eeMail, c, 0, 0, 6, 4, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, wjDate, c, 0, 10, 5, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, weMail, c, 0, 10, 9, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wjDate, c, 0, 10, 2, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, weMail, c, 0, 10, 6, 5, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, mobile, c, 20, 0, 3, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, emobile, c, 0, 0, 5, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, lline, c, 20, 0, 7, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, elline, c, 0, 0, 9, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, mobile, c, 20, 0, 0, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, emobile, c, 0, 0, 2, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, lline, c, 20, 0, 4, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, elline, c, 0, 0, 6, 6, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, wmobile, c, 0, 10, 5, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, wlline, c, 0, 10, 9, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wmobile, c, 0, 10, 2, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, wlline, c, 0, 10, 6, 7, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, address, c, 20, 0, 3, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 4, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, eaddress, c, 0, 0, 5, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 6, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, type, c, 20, 0, 7, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 8, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, etype, c, 30, 0, 9, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, address, c, 20, 0, 0, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 1, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, eaddress, c, 0, 0, 2, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 3, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, type, c, 20, 0, 4, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, etype, c, 30, 0, 6, 8, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, waddress, c, 0, 10, 5, 9, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, waddress, c, 0, 10, 2, 9, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, save, c, 0, 10, 8, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(dataPanel, reset, c, 0, 10, 9, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, save, c, 0, 10, 5, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(dataPanel, reset, c, 0, 10, 6, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
+		
+		String[] cheader= {"User Name","Name","Age","Joining Date","E-Mail","Mobile","Land Line","Address"};
+		edit=new JButton("Edit");
+		edit.setVisible(false);
+		cf.undecorateButton(edit);
+		cf.setColor(edit, 3, 14, true);
+		tb=new JTable();
+		//tb.setEnabled(false);
+		tb.setPreferredScrollableViewportSize(new Dimension(1100, 100));
+		tb.setFillsViewportHeight(true);
+		JTableHeader th=tb.getTableHeader();
+		th.setBackground(new Color(105,105,105));
+		th.setForeground(Color.white);
+		th.setFont(new Font("Bradley Hand ITC",Font.BOLD+Font.ITALIC,14));
+		dt=new DefaultTableModel(cheader,0);
+		
+		
+			
 		showTable();
+		
+		tb.getColumnModel().getColumn(0).setMaxWidth(100);
+		tb.getColumnModel().getColumn(1).setMaxWidth(160);
+		tb.getColumnModel().getColumn(2).setMaxWidth(35);
+		tb.getColumnModel().getColumn(3).setMaxWidth(110);
+		tb.getColumnModel().getColumn(4).setMaxWidth(180);
+		tb.getColumnModel().getColumn(5).setMaxWidth(130);
+		tb.getColumnModel().getColumn(6).setMaxWidth(150);
+		tb.getColumnModel().getColumn(7).setMaxWidth(240);
+		
+		
+		
+		tablePanel=new JPanel();
+		tablePanel.setOpaque(false);
+		tablePanel.setLayout(new GridBagLayout());
+		
+		cf.setColor(tb, 3, 14, false);
+		
+		
+		JScrollPane js=new JScrollPane(tb);
+		
+		
+		//tablePanel.add(js);
+		//tablePanel.add(edit);
+		
+		
+		cf.addBag(tablePanel,js, c, 0, 0, 0, 0, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(tablePanel,edit, c, 0, 10, 0, 1, 0, 0, GridBagConstraints.CENTER);
 		
 		cf.addBag(this, titlePanel, c, 0, 0, 0, 0, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		cf.addBag(this, dataPanel, c, 0, 70, 0, 1, 0, 0, GridBagConstraints.FIRST_LINE_START);
@@ -318,35 +365,6 @@ public class ShowTeacher extends JPanel {
 
 		
 		
-		save.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(wname.getText().equals(" ") && wage.getText().equals(" ") && wjDate.getText().equals(" ") && weMail.getText().equals(" ")  && wmobile.getText().equals(" ") && wlline.getText().equals(" ") && waddress.getText().equals(" ")) {
-					try {
-						DBConnect x=new DBConnect();
-						String sql="update adminlog set aname='"+ename.getText()+
-								"',aage="+eage.getText()+
-								",ajdate=TO_DATE('"+ejDate.getText()+
-								"','YYYY/MM/DD'),aemail='"+eeMail.getText()+
-								"',amobile='"+emobile.getText()+
-								"',alline='"+elline.getText()+
-								"',aaddress='"+eaddress.getText()+
-								"', atype='"+ etype.getSelectedItem() +"' where ausername='"+euser.getText()+"'";
-						x.QueryExecuter(sql);
-						JOptionPane.showMessageDialog(null, "Data fill sucessfully");
-												
-						
-					}catch(Exception ex) {	System.out.println(ex);}
-					
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "first fill all the required textFieled");
-				}
-				
-			}
-		});		
-		
 		
 		
 		
@@ -354,6 +372,7 @@ public class ShowTeacher extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				euser.setText("");
 				ename.setText("");
 				eage.setText("");
 				ejDate.setText("");
@@ -381,36 +400,26 @@ public class ShowTeacher extends JPanel {
 				edit.setVisible(false);
 				dataPanel.setVisible(true);
 				int a=tb.getSelectedRow();
-				tb.clearSelection();
-					
+				
+				String dv = null;
 				try {
-					DBConnect x=new DBConnect();
-					String sql="select * from adminlog where atype='TEACHER'";
-					rs=x.QueryReturner(sql);
-					rs.next();
-					while(a!=0) {
-						rs.next();
-						a--;
-					}
-					
-					
-					String datev=rs.getDate(4).toString();
+					String datev=dt.getValueAt(a, 3).toString();
 					java.util.Date date1v=new SimpleDateFormat("yyyy-MM-dd").parse(datev);
 					SimpleDateFormat sdfv=new SimpleDateFormat("yyyy-MM-dd");
-					String dv=sdfv.format(date1v);
-					
-					euser.setText(rs.getString(1));
-					ename.setText(rs.getString(2));
-					eage.setText(rs.getString(3));
-					ejDate.setText(dv);
-					eeMail.setText(rs.getString(5));
-					emobile.setText(rs.getString(6));
-					elline.setText(rs.getString(7));
-					eaddress.setText(rs.getString(8));
-					pass=rs.getString(9);
-					etype.setSelectedItem(rs.getString(10));
-				}catch(Exception ex) {}			
+					dv=sdfv.format(date1v);	
+				}catch(Exception ex) {}
 				
+
+				
+					euser.setText(dt.getValueAt(a, 0).toString());
+					ename.setText(dt.getValueAt(a, 1).toString());
+					eage.setText(dt.getValueAt(a, 2).toString());
+					ejDate.setText(dv);
+					eeMail.setText(dt.getValueAt(a, 4).toString());
+					emobile.setText(dt.getValueAt(a, 5).toString());
+					elline.setText(dt.getValueAt(a, 6).toString());
+					eaddress.setText(dt.getValueAt(a, 7).toString());
+					etype.setSelectedItem(0);
 			}
 		});
 		
@@ -419,54 +428,26 @@ public class ShowTeacher extends JPanel {
 	void showTable() {
 
 		//table panel
-		String[] cheader= {"Name","Age","Joining Date","E-Mail","Mobile","Land Line","Address"};
-		edit=new JButton("Edit");
-		edit.setVisible(false);
-		cf.undecorateButton(edit);
-		cf.setColor(edit, 3, 14, true);
-		tb=new JTable();
-		//tb.setEnabled(false);
-		tb.setPreferredScrollableViewportSize(new Dimension(1000, 100));
-		tb.setFillsViewportHeight(true);
-		JTableHeader th=tb.getTableHeader();
-		th.setBackground(new Color(105,105,105));
-		th.setForeground(Color.white);
-		th.setFont(new Font("Bradley Hand ITC",Font.BOLD+Font.ITALIC,14));
-		DefaultTableModel dt=new DefaultTableModel(cheader,0);
 		
 		try {
 			DBConnect x=new DBConnect();
-			String sql="select aname,aage,ajdate,aemail,amobile,alline,aaddress from adminlog where atype='TEACHER'";
+			String sql="select ausername,aname,aage,ajdate,aemail,amobile,alline,aaddress from adminlog where atype='TEACHER'";
 			rs=x.QueryReturner(sql);
 		
 		
 		
 		while(rs.next()) {
-			dt.addRow(new Object[] {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)});
+			dt.addRow(new Object[] {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
 		}
 		
 		
 		}catch(Exception ex) {}
 		
+		
+		
 		tb.setModel(dt);
 		
-		tablePanel=new JPanel();
-		tablePanel.setOpaque(false);
-		tablePanel.setLayout(new GridBagLayout());
 		
-		cf.setColor(tb, 3, 14, false);
-		
-		
-		JScrollPane js=new JScrollPane(tb);
-		
-		
-		//tablePanel.add(js);
-		//tablePanel.add(edit);
-		
-		
-		cf.addBag(tablePanel,js, c, 0, 0, 0, 0, 0, 0, GridBagConstraints.FIRST_LINE_START);
-		cf.addBag(tablePanel,edit, c, 0, 10, 0, 1, 0, 0, GridBagConstraints.CENTER);
-		
-		
-	}
+}
+	
 }

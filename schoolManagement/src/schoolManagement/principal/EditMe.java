@@ -137,7 +137,7 @@ public class EditMe extends JPanel{
 		
 		
 		
-		cf.addBag(up,title1,c,0,0,0,0,0,0,GridBagConstraints.SOUTH);
+		cf.addBag(up,title1,c,30,0,0,0,0,0,GridBagConstraints.SOUTH);
 		cf.addBag(up,s00,c,90,50,0,1,0,0,GridBagConstraints.PAGE_START);
 		cf.addBag(up,inner1,c,0,0,0,2,0,0,GridBagConstraints.PAGE_START);
 		
@@ -252,13 +252,13 @@ public class EditMe extends JPanel{
 		
 		
 		
-		cf.addBag(down,title2,c,0,0,0,0,0,0,GridBagConstraints.SOUTH);
+		cf.addBag(down,title2,c,30,0,0,0,0,0,GridBagConstraints.SOUTH);
 		cf.addBag(down,s11,c,90,50,0,1,0,0,GridBagConstraints.PAGE_START);
 		cf.addBag(down,inner2,c,0,0,0,2,0,0,GridBagConstraints.PAGE_START);
 		
 		
 		cf.addBag(this,up,c,0,0,0,0,0,0,GridBagConstraints.PAGE_START);
-		cf.addBag(this,new JSeparator(),c,0,100,0,1,0,0,GridBagConstraints.PAGE_START);
+		cf.addBag(this,new JSeparator(),c,0,70,0,1,0,0,GridBagConstraints.PAGE_START);
 		cf.addBag(this,down,c,0,0,0,2,0,0,GridBagConstraints.PAGE_START);
 		
 		

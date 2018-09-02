@@ -70,7 +70,7 @@ public class indexClass extends JFrame {
 		titlePanel.setBackground(cr);
 		c.fill=GridBagConstraints.HORIZONTAL;
 		cf.addBag(titlePanel,titleImage,c,30,30,0,0,0,0,GridBagConstraints.LINE_START);
-		cf.addBag(titlePanel,title,c,415,20,1,0,0,0,GridBagConstraints.LINE_START);
+		cf.addBag(titlePanel,title,c,370,20,1,0,0,0,GridBagConstraints.LINE_START);
 		topPanel=new JPanel();
 		topPanel.setLayout(new GridBagLayout());
 		topPanel.setBackground(cr);
@@ -141,7 +141,7 @@ public class indexClass extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new Login("VIS-PRINCIPAL");
+				new Login("VICE-PRINCIPAL");
 			}
 		});
 		feesManager.addActionListener(new ActionListener() {

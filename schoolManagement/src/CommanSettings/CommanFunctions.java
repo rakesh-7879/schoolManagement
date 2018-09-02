@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
 public class CommanFunctions {
 	public void undecorateButton(JButton button) {
@@ -27,9 +28,12 @@ public class CommanFunctions {
 	}
 	public void setColor(Component com,int font, int size,boolean color) {
 		if(color) com.setForeground(Color.WHITE); else com.setForeground(new Color(2,119,189)); 
-		if(font==0) com.setFont(new Font("Bradley Hand ITC",Font.PLAIN,size));
-		if(font==1) com.setFont(new Font("Bradley Hand ITC",Font.BOLD,size));
-		if(font==2) com.setFont(new Font("Bradley Hand ITC",Font.ITALIC,size));
-		if(font==3) com.setFont(new Font("Bradley Hand ITC",Font.BOLD+Font.ITALIC,size));
+		if(font==0) com.setFont(new Font("Lucida Calligraphy",Font.PLAIN,size));
+		if(font==1) com.setFont(new Font("Lucida Calligraphy",Font.BOLD,size));
+		if(font==2) com.setFont(new Font("Lucida Calligraphy",Font.ITALIC,size));
+		if(font==3) com.setFont(new Font("Lucida Calligraphy",Font.BOLD+Font.ITALIC,size));
+	}
+	public void refresh() {
+		
 	}
 }

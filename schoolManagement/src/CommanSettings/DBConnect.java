@@ -8,17 +8,7 @@ public class DBConnect {
 		Class.forName("oracle.jdbc.OracleDriver");
 		conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "schoolmanagement", "admin");
 	}
-	/*
-	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 * public void QueryExecuter(String sql) throws Exception{
-Statement stat=conn.createStatement();
-stat.execute(sql);
-stat.close();
-conn.close();
-}
-	 * 
-	 */
+	
 	public void QueryExecuter(String sql) throws Exception {
 		Statement stat=conn.createStatement();
 		stat.executeQuery(sql);

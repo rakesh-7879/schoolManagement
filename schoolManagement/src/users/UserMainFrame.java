@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import CommanSettings.CommanFunctions;
-
+import CommanSettings.DBConnect;
 import beans.*;
 import schoolManagement.indexClass;
 
@@ -29,6 +29,10 @@ public class UserMainFrame extends JFrame{
 	Color cr=new Color(105,105,105);
 	CommanFunctions cf=new CommanFunctions();
 	GridBagConstraints c=new GridBagConstraints();
+	
+	UMenu uMenu;
+	
+	NewAdmission na;
 	
 	
 	public UserMainFrame(String name,String username) {
@@ -120,11 +124,71 @@ public class UserMainFrame extends JFrame{
 		cf.addBag(topPanel,close,c,10,10,2,0,0,0,GridBagConstraints.LINE_END);
 		
 		//center top
+		uMenu=new UMenu();
+		
+		
+		
 		
 		centerPanel=new JPanel();
 		centerPanel.setOpaque(false);
 		centerPanel.setLayout(new BorderLayout());
 		
+		
+		//center center initilization
+		na=new NewAdmission();
+		
+		
+		
+		
+		
+		if(name.equals("FEES MANAGER")) {
+			uMenu.setVisible(true);
+			
+			uMenu.newAdmission.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					na.setVisible(true);
+					
+				}
+			});
+			
+			na.save.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						DBConnect x=new DBConnect();
+						String sql="insert into studenttable values('"+na.eid.getText()+"','"+
+						na.ename.getText()+"','"+
+						na.eparent.getText()+"',TO_DATE('"+
+						na.edob.getText()+"','YYYY/MM/DD'),TO_DATE('"+
+						na.eadate.getText()+"','YYYY/MM/DD HH/MI/SS'),'"+
+						na.eaddress.getText()+"','"+
+						na.emobile.getText()+"','"+
+						na.essamagraid.getText()+"','"+
+						na.efsamagraid.getText()+"','"+
+						na.ephoto.getText()+"','"+
+						na.esclass.getSelectedItem()+"')";
+						x.QueryExecuter(sql);
+						JOptionPane.showMessageDialog(null, "sucessfully");
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					
+				}
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
 		
 		
 		
@@ -133,12 +197,10 @@ public class UserMainFrame extends JFrame{
 		//center center panel
 		centerCenterPanel=new JPanel();
 		centerCenterPanel.setOpaque(false);
-		
+		centerCenterPanel.add(na);
 		
 		
 		//center right panel
-		
-		
 		centerRightPanel=new JPanel();
 		centerRightPanel.setBackground(new Color(105,105,105));
 		
@@ -149,7 +211,7 @@ public class UserMainFrame extends JFrame{
 		
 		
 		
-		//centerPanel.add(pMenu,BorderLayout.NORTH);
+		centerPanel.add(uMenu,BorderLayout.NORTH);
 		centerPanel.add(centerRightPanel,BorderLayout.EAST);
 		centerPanel.add(centerCenterPanel,BorderLayout.CENTER);
 		
@@ -167,5 +229,10 @@ public class UserMainFrame extends JFrame{
 		});
 	}
 		
+	
+	
+	public static void main(String args[]) {
+		new UserMainFrame("FEES MANAGER","rakesh");
+	}
 
 }

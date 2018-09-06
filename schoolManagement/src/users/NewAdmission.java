@@ -36,7 +36,7 @@ public class NewAdmission extends JPanel{
 	JTextField eid,ename,eparent,edob,eadate,eaddress,emobile,essamagraid,efsamagraid,ephoto;
 	JComboBox esclass;
 	JLabel wid,wname,wparent,wdob,wadate,waddress,wmobile,wssamagraid,wfsamagraid,wsclass;
-	JButton save,reset,sphoto;
+	JButton save,reset;
 	ImageIcon img;
 	LocalDateTime date;
 	File file,file1,file2;
@@ -186,9 +186,7 @@ public class NewAdmission extends JPanel{
 		cf.setColor(photo, 2, 14, true);
 		ephoto=new JTextField(15);
 		cf.setColor(ephoto, 3, 12, false);
-		sphoto=new JButton("Upload");
-		cf.setColor(sphoto, 2, 14, true);
-		cf.undecorateButton(sphoto);
+		
 		
 		showimg=new JLabel();
 		img=new ImageIcon("images/student.png");
@@ -257,7 +255,6 @@ public class NewAdmission extends JPanel{
 		cf.addBag(dataPanel,new JSeparator(JSeparator.VERTICAL), c, 40, 0, 5, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		cf.addBag(dataPanel, esclass, c, 0, 0, 6, 10, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
-		cf.addBag(dataPanel, sphoto, c, 10, 5, 2, 11, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		cf.addBag(dataPanel, wsclass, c, 10, 5, 6, 11, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
 		cf.addBag(dataPanel, showimg, c, 10, 5, 2, 12, 0, 0, GridBagConstraints.FIRST_LINE_START);
@@ -279,9 +276,45 @@ public class NewAdmission extends JPanel{
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+				DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm:ss");
 				date=LocalDateTime.now();
 				eadate.setText(dtf.format(date));
+			}
+		});
+		essamagraid.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				String g=essamagraid.getText();
+				int a=g.length();
+				if(a!=9) {
+					JOptionPane.showMessageDialog(null, "must contain only 9 digits ");
+					essamagraid.setText("");
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		efsamagraid.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				String g=efsamagraid.getText();
+				int a=g.length();
+				if(a!=9) {
+					JOptionPane.showMessageDialog(null, "must contain only 9 digits ");
+					efsamagraid.setText("");
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		ephoto.addFocusListener(new FocusListener() {
@@ -309,19 +342,13 @@ public class NewAdmission extends JPanel{
 				}
 				ephoto.setFocusable(false);
 				ephoto.setFocusable(true);
-			}
-		});
-		
-		sphoto.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e){
+				
 				file2=new File("D:\\backup\\schoolManagement\\schoolManagement\\studentimages\\"+eid.getText()+".jpg");
 				try {
 					copyFile(file, file2);
 					ephoto.setText(file2.getPath());
 					img=new ImageIcon("D:\\backup\\schoolManagement\\schoolManagement\\studentimages\\"+eid.getText()+".jpg");
-					Image image=img.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
+					Image image=img.getImage().getScaledInstance(120, 150, java.awt.Image.SCALE_SMOOTH);
 					img=new ImageIcon(image);
 					showimg.setIcon(img);
 				} catch (IOException e1) {
@@ -329,6 +356,7 @@ public class NewAdmission extends JPanel{
 				}
 			}
 		});
+		
 		
 		reset.addActionListener(new ActionListener() {
 			

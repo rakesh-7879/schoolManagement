@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.Calendar;
 
 import javax.swing.*;
 
@@ -163,7 +165,7 @@ public class UserMainFrame extends JFrame{
 						na.ename.getText()+"','"+
 						na.eparent.getText()+"',TO_DATE('"+
 						na.edob.getText()+"','YYYY/MM/DD'),TO_DATE('"+
-						na.eadate.getText()+"','YYYY/MM/DD HH/MI/SS'),'"+
+						na.eadate.getText()+"','YYYY/MM/DD hh/MI/SS'),'"+
 						na.eaddress.getText()+"','"+
 						na.emobile.getText()+"','"+
 						na.essamagraid.getText()+"','"+
@@ -172,6 +174,38 @@ public class UserMainFrame extends JFrame{
 						na.esclass.getSelectedItem()+"')";
 						x.QueryExecuter(sql);
 						JOptionPane.showMessageDialog(null, "sucessfully");
+						na.roll="";
+						Integer year=Calendar.getInstance().get(Calendar.YEAR);
+						na.roll=year.toString();
+						try {
+							DBConnect xx=new DBConnect();
+							ResultSet a=xx.QueryReturner("select count(id) from studenttable");
+							a.next();
+							Integer count=a.getInt(1);
+							count++;
+							int l=count.toString().length();
+							for(int i=0;i<5-l;i++) 
+								na.roll=na.roll+"0";
+							na.roll=na.roll+count;
+							na.eid.setText(na.roll);
+							
+						} catch (Exception e2) {
+							
+							e2.printStackTrace();
+						}
+						na.ename.setText("");
+						na.eparent.setText("");
+						na.edob.setText("");
+						na.eadate.setText("");
+						na.eaddress.setText("");
+						na.emobile.setText("");
+						na.essamagraid.setText("");
+						na.efsamagraid.setText("");
+						na.ephoto.setText("");
+						na.esclass.setSelectedIndex(0);
+						na.img=new ImageIcon("images/student.png");
+						na.showimg.setIcon(na.img);	
+
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}

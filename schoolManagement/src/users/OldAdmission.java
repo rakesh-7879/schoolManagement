@@ -1,6 +1,8 @@
 package users;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -11,6 +13,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,27 +26,38 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import CommanSettings.CommanFunctions;
 import CommanSettings.DBConnect;
 
-public class NewAdmission extends JPanel{
-	JPanel titlePanel,dataPanel,buttonPanel,photoPanel;
+public class OldAdmission extends JPanel{
+	JPanel titlePanel,dataPanel,buttonPanel,photoPanel,tablePanel;
 	JLabel title,id,name,parent,dob,adate,address,mobile,ssamagraid,fsamagraid,sclass,photo,showimg;
 	JTextField eid,ename,eparent,edob,eadate,eaddress,emobile,essamagraid,efsamagraid,ephoto;
 	JComboBox esclass;
 	JLabel wid,wname,wparent,wdob,wadate,waddress,wmobile,wssamagraid,wfsamagraid,wsclass;
-	JButton save,reset;
+	JButton save,reset,edit;
 	ImageIcon img;
 	LocalDateTime date;
 	File file,file1,file2;
 	CommanFunctions cf=new CommanFunctions();
 	GridBagConstraints c=new GridBagConstraints();
 	String roll;
-	public NewAdmission() {
+	JTable tb;
+	ResultSet rs = null;
+	String pass;
+	DefaultTableModel dt;
+	Dimension d;
+	ArrayList<String> imgpath=new ArrayList<String>();
+	public OldAdmission() {
 		setVisible(false);
 		setOpaque(false);
 		setLayout(new GridBagLayout());
@@ -195,6 +209,58 @@ public class NewAdmission extends JPanel{
 		dataPanel=new JPanel();
 		dataPanel.setOpaque(false);
 		dataPanel.setLayout(new GridBagLayout());
+		dataPanel.setVisible(false);
+		
+		
+		
+		//table panel
+		String[] cheader= {"ID","Name","Parent","DOB","Admission Date","Address","Mobile","Samagra ID","family S ID","Ad. Class","Cu. Class"};
+		edit=new JButton("Edit");
+		edit.setVisible(false);
+		cf.undecorateButton(edit);
+		cf.setColor(edit, 3, 14, true);
+		tb=new JTable();
+		cf.setColor(tb, 0, 8, true);
+		//tb.setEnabled(false);
+		d=Toolkit.getDefaultToolkit().getScreenSize();
+		tb.setPreferredScrollableViewportSize(new Dimension(d.width-50, 250));
+		//tb.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		JTableHeader th=tb.getTableHeader();
+		
+		th.setBackground(new Color(105,105,105));
+		th.setForeground(Color.white);
+		th.setFont(new Font("Bradley Hand ITC",Font.BOLD+Font.ITALIC,14));
+		dt=new DefaultTableModel(cheader,0);
+		
+		showTable();
+		
+		
+		tb.getColumnModel().getColumn(0).setMaxWidth(100);
+		tb.getColumnModel().getColumn(1).setMaxWidth(300);
+		tb.getColumnModel().getColumn(2).setMaxWidth(200);
+		tb.getColumnModel().getColumn(3).setMaxWidth(140);
+		tb.getColumnModel().getColumn(4).setMaxWidth(280);
+		tb.getColumnModel().getColumn(5).setMaxWidth(250);
+		tb.getColumnModel().getColumn(6).setMaxWidth(200);
+		tb.getColumnModel().getColumn(7).setMaxWidth(150);
+		tb.getColumnModel().getColumn(8).setMaxWidth(150);
+		tb.getColumnModel().getColumn(9).setMaxWidth(100);
+		tb.getColumnModel().getColumn(10).setMaxWidth(100);
+		
+		
+		tablePanel=new JPanel();
+		tablePanel.setOpaque(false);
+		tablePanel.setLayout(new GridBagLayout());
+		
+		cf.setColor(tb, 3, 14, false);
+		
+		
+		JScrollPane js=new JScrollPane(tb);
+		
+		
+		
+		
+		
 		
 		
 		cf.addBag(dataPanel, id, c, 20, 0, 0, 0, 0, 0, GridBagConstraints.FIRST_LINE_START);
@@ -260,6 +326,14 @@ public class NewAdmission extends JPanel{
 		cf.addBag(dataPanel, showimg, c, 10, 5, 2, 12, 0, 0, GridBagConstraints.FIRST_LINE_START);
 		
 		cf.addBag(dataPanel, buttonPanel, c, 0, 0, 6, 12, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		
+		cf.addBag(tablePanel,js, c, 0, 0, 0, 0, 0, 0, GridBagConstraints.FIRST_LINE_START);
+		cf.addBag(tablePanel,edit, c, 0, 10, 0, 1, 0, 0, GridBagConstraints.CENTER);
+
+		
+
+		cf.addBag(this, tablePanel, c, 0, 70, 0, 2, 0, 0, GridBagConstraints.FIRST_LINE_START);
+
 		
 		//this panel
 		cf.addBag(this, titlePanel, c, 0, 0, 0, 0, 0, 0, GridBagConstraints.NORTH);
@@ -370,7 +444,7 @@ public class NewAdmission extends JPanel{
 				// TODO Auto-generated method stub
 				
 			}
-		});	
+		});
 
 
 		essamagraid.addFocusListener(new FocusListener() {
@@ -472,6 +546,53 @@ public class NewAdmission extends JPanel{
 				showimg.setIcon(img);	
 			}
 		});
+		tb.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				edit.setVisible(true);
+				
+			}
+		});
+		edit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				edit.setVisible(false);
+				dataPanel.setVisible(true);
+				int a=tb.getSelectedRow();
+				
+				String dv = null;
+				try {
+					String datev=dt.getValueAt(a, 3).toString();
+					java.util.Date date1v=new SimpleDateFormat("yyyy-MM-dd").parse(datev);
+					SimpleDateFormat sdfv=new SimpleDateFormat("yyyy-MM-dd");
+					dv=sdfv.format(date1v);	
+				}catch(Exception ex) {}
+				
+
+				System.out.println(a);
+					eid.setText(dt.getValueAt(a, 0).toString());
+					ename.setText(dt.getValueAt(a, 1).toString());
+					eparent.setText(dt.getValueAt(a, 2).toString());
+					edob.setText(dv);
+					eadate.setText(dt.getValueAt(a, 4).toString());
+					eaddress.setText(dt.getValueAt(a, 5).toString());
+					emobile.setText(dt.getValueAt(a, 6).toString());
+					essamagraid.setText(dt.getValueAt(a, 7).toString());
+					efsamagraid.setText(dt.getValueAt(a, 8).toString());
+					ephoto.setText(imgpath.get(a));
+					
+					
+					img=new ImageIcon(imgpath.get(a));
+					Image image=img.getImage().getScaledInstance(120, 150, java.awt.Image.SCALE_SMOOTH);
+					img=new ImageIcon(image);
+					showimg.setIcon(img);
+					
+					
+				}
+		});
+
 	}
 	private static void copyFile(File sourceFile, File destFile) throws IOException {
 	    if (!sourceFile.exists()) {
@@ -495,4 +616,25 @@ public class NewAdmission extends JPanel{
 	    }
 
 	}
+	void showTable() {
+
+		try {
+			DBConnect x=new DBConnect();
+			String sql="select * from studenttable";
+			rs=x.QueryReturner(sql);
+		
+		
+		
+		while(rs.next()) {
+			dt.addRow(new Object[] {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(11),rs.getString(12)});
+			imgpath.add(rs.getString(10));
+		}		
+		}catch(Exception ex) {
+			System.out.println(ex);
+		}
+	
+		tb.setModel(dt);
+				
+	}
+
 }

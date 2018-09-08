@@ -35,6 +35,7 @@ public class UserMainFrame extends JFrame{
 	UMenu uMenu;
 	
 	NewAdmission na;
+	OldAdmission oa;
 	
 	
 	public UserMainFrame(String name,String username) {
@@ -138,7 +139,7 @@ public class UserMainFrame extends JFrame{
 		
 		//center center initilization
 		na=new NewAdmission();
-		
+		oa=new OldAdmission();
 		
 		
 		
@@ -151,6 +152,15 @@ public class UserMainFrame extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					na.setVisible(true);
+					oa.setVisible(false);
+				}
+			});
+			uMenu.oldAdmission.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					na.setVisible(false);
+					oa.setVisible(true);
 					
 				}
 			});
@@ -159,6 +169,9 @@ public class UserMainFrame extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					if(na.ename.getText().equals("") && na.eparent.getText().equals("") && na.edob.getText().equals("") && na.eadate.getText().equals("") && na.eaddress.getText().equals("") && na.emobile.getText().equals("") && na.essamagraid.getText().equals("") && na.efsamagraid.getText().equals("") ) {
+						JOptionPane.showMessageDialog(null, "first fill all the fields");
+					}else {
 					try {
 						DBConnect x=new DBConnect();
 						String sql="insert into studenttable values('"+na.eid.getText()+"','"+
@@ -171,6 +184,7 @@ public class UserMainFrame extends JFrame{
 						na.essamagraid.getText()+"','"+
 						na.efsamagraid.getText()+"','"+
 						na.ephoto.getText()+"','"+
+						na.esclass.getSelectedItem()+"','"+
 						na.esclass.getSelectedItem()+"')";
 						x.QueryExecuter(sql);
 						JOptionPane.showMessageDialog(null, "sucessfully");
@@ -209,6 +223,7 @@ public class UserMainFrame extends JFrame{
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+					}
 					
 				}
 			});
@@ -232,6 +247,7 @@ public class UserMainFrame extends JFrame{
 		centerCenterPanel=new JPanel();
 		centerCenterPanel.setOpaque(false);
 		centerCenterPanel.add(na);
+		centerCenterPanel.add(oa);
 		
 		
 		//center right panel

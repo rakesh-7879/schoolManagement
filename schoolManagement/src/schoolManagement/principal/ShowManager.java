@@ -378,7 +378,7 @@ public class ShowManager extends JPanel {
 				elline.setText("");
 				eaddress.setText("");
 				etype.setSelectedIndex(1);
-			}
+			}a
 		});
 		
 		tb.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
